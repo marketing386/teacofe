@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ecuador & Bolivia Coffee & Tea Co. — From the Andes’ Heart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Инвестиционный проект Ecuador & Bolivia Coffee & Tea Co. — чай, кофе и суперфуды из сердца Анд."
+  />
+  <link rel="icon" type="image/png" href="image/logo-ecuador-bolivia.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; scroll-behavior: smooth; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(
+        180deg,
+        #f3faf6 0%,
+        #f8fbf7 22%,
+        #fdf8ec 52%,
+        #f6efe4 78%,
+        #f4ebdf 100%
+      );
+      color: #143026;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+
+    .page {
+      position: relative;
+      min-height: 100vh;
+      isolation: isolate;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 80px 0;
+      position: relative;
+      z-index: 1;
+    }
+    @media (max-width: 768px) {
+      section { padding: 60px 0; }
+    }
+
+    h1, h2, h3 { font-weight: 700; letter-spacing: 0.03em; }
+    h1 { font-size: clamp(2rem, 4.2vw, 3rem); margin-bottom: 20px; }
+    h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); margin-bottom: 24px; }
+    h3 { font-size: 1.3rem; margin-bottom: 16px; }
+    p  { margin-bottom: 12px; }
+    .tagline {
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 12px;
+      opacity: 0.8;
+    }
+
+    /* ПУЗЫРЬКИ */
+    .bubble-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      animation: bubbleFloat linear infinite, bubbleSway ease-in-out infinite;
+      transform-origin: center;
+    }
+    @keyframes bubbleFloat {
+      from { transform: translate3d(var(--x), 110vh, 0) scale(var(--scale)); }
+      to   { transform: translate3d(var(--x), -130vh, 0) scale(var(--scale)); }
+    }
+    @keyframes bubbleSway {
+      0%,100% { margin-left: 0; }
+      50%     { margin-left: 18px; }
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: rgba(241, 247, 244, 0.94);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .header-inner { padding: 6px 0 8px; }
+
+    .header-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-block {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      justify-self: center;
+      text-align: left;
+    }
+    .logo-block img {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      box-shadow: 0 4px 10px rgba(80, 121, 84, 0.35);
+      background: #f5dd9f;
+    }
+    .logo-text-main {
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-transform: uppercase;
+    }
+    .logo-text-sub {
+      font-size: 0.76rem;
+      opacity: 0.8;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.08);
+      overflow: hidden;
+      background: rgba(255,255,255,0.8);
+      justify-self: start;
+    }
+    .lang-btn {
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      border: none;
+      background: transparent;
+      opacity: 0.6;
+      transition: background 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+    }
+    .lang-btn.active {
+      background: #1b4d3e;
+      color: #fdf8ea;
+      opacity: 1;
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      width: 24px;
+      cursor: pointer;
+      justify-self: end;
+    }
+    .burger span {
+      height: 2px;
+      border-radius: 999px;
+      background: #143026;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .burger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .burger.active span:nth-child(2) { opacity: 0; }
+    .burger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    .header-nav {
+      margin-top: 4px;
+      border-top: 1px solid rgba(0,0,0,0.03);
+      padding-top: 4px;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .nav-links a {
+      position: relative;
+      padding: 6px 0;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: #1b4d3e;
+      transform: translateX(-50%);
+      transition: width 0.25s ease;
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    @media (max-width: 900px) {
+      .header-grid { grid-template-columns: auto auto; }
+      .logo-block {
+        grid-column: 1 / -1;
+        justify-self: center;
+      }
+      .burger { display: flex; }
+      .header-nav { padding-top: 0; }
+      .nav-links {
+        position: fixed;
+        inset: 60px 0 auto 0;
+        flex-direction: column;
+        align-items: center;
+        padding: 16px 0 20px;
+        gap: 12px;
+        background: rgba(241,247,244,0.96);
+        transform: translateY(-120%);
+        transition: transform 0.25s ease;
+        box-shadow: 0 18px 26px rgba(0,0,0,0.16);
+        z-index: 9;
+      }
+      .nav-links.open { transform: translateY(0); }
+    }
+
+    /* КНОПКИ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 11px 20px;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.2s ease, color 0.2s ease;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-gradient {
+      background: linear-gradient(135deg, #1b4d3e, #46a06f);
+      color: #fdf8ea;
+      box-shadow: 0 8px 18px rgba(27, 77, 62, 0.5);
+    }
+    .btn-gradient:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 11px 22px rgba(27, 77, 62, 0.55);
+    }
+
+    /* HERO */
+    #hero {
+      min-height: calc(100vh - 88px);
+      display: flex;
+      align-items: center;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+      gap: 44px;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      #hero { padding-top: 40px; }
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(0,0,0,0.04);
+      font-size: 0.78rem;
+      margin-bottom: 12px;
+    }
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #5ec28c;
+      box-shadow: 0 0 10px rgba(94, 194, 140, 0.9);
+    }
+    .hero-subtitle {
+      font-size: 1.02rem;
+      margin-bottom: 16px;
+      max-width: 560px;
+    }
+    @media (max-width: 768px) {
+      .hero-subtitle { font-size: 0.96rem; }
+    }
+    .hero-tagline {
+      font-style: italic;
+      margin-bottom: 18px;
+      color: #4d6b47;
+    }
+    .hero-bullets {
+      list-style: none;
+      margin-bottom: 22px;
+    }
+    .hero-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      font-size: 0.94rem;
+      margin-bottom: 6px;
+    }
+    .hero-bullets li::before {
+      content: "●";
+      font-size: 0.7rem;
+      margin-top: 6px;
+      color: #5ec28c;
+    }
+    .hero-actions { margin-bottom: 16px; }
+    .hero-note {
+      font-size: 0.83rem;
+      opacity: 0.8;
+      max-width: 420px;
+    }
+
+    .hero-visual {
+      position: relative;
+      justify-self: center;
+      transform-origin: center;
+      animation: heroParallax 8s ease-in-out infinite;
+    }
+    @keyframes heroParallax {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(-10px); }
+    }
+    .hero-card {
+      position: relative;
+      border-radius: 26px;
+      padding: 14px;
+      background: radial-gradient(circle at top, #fdfdfb 0, #e0f2e8 60%, #d3e8df 100%);
+      box-shadow: 0 20px 48px rgba(45, 85, 60, 0.4);
+      overflow: hidden;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    .hero-card-inner {
+      border-radius: 22px;
+      padding: 12px;
+      background: rgba(255,255,255,0.92);
+    }
+
+    .hero-slider-wrapper { position: relative; }
+
+    .hero-coffee-pack {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      transform-origin: center;
+      transition: transform 0.5s ease;
+      min-height: 280px;
+    }
+    .hero-card:hover .hero-coffee-pack { transform: scale(1.02); }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: scale(1.03);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-slide.active {
+      opacity: 1;
+      transform: scale(1);
+      position: relative;
+    }
+
+    .hero-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(20, 48, 38, 0.75);
+      color: #fdf8ea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      line-height: 1;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      z-index: 3;
+    }
+    .hero-arrow-left { left: 10px; }
+    .hero-arrow-right { right: 10px; }
+    .hero-arrow:hover {
+      background: rgba(20,48,38,0.95);
+      transform: translateY(-50%) translateY(-1px);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.45);
+    }
+    @media (max-width: 600px) {
+      .hero-arrow {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+      }
+    }
+
+    .hero-floating-label {
+      position: absolute;
+      left: 10%;
+      bottom: 8%;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: rgba(27,77,62,0.94);
+      color: #fdf8ea;
+      font-size: 0.78rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 8px 18px rgba(27,77,62,0.7);
+      animation: floatLabel 4s ease-in-out infinite;
+      z-index: 2;
+    }
+    .hero-floating-label span { font-size: 0.9rem; }
+    @keyframes floatLabel {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(-6px); }
+    }
+    .hero-logo-mark {
+      position: absolute;
+      top: -26px;
+      right: -26px;
+      width: 90px;
+      opacity: 0.88;
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,0.35));
+      transform: rotate(10deg);
+    }
+
+    /* ГРИДЫ / КАРТОЧКИ */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+    @media (max-width: 900px) {
+      .grid-3, .grid-2 { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 18px 18px 20px;
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(0);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 10% 0, rgba(94,194,140,0.08), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.12);
+    }
+    .card:hover::after { opacity: 1; }
+
+    .card-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.7;
+      margin-bottom: 6px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: rgba(240, 250, 244, 0.95);
+      font-size: 0.78rem;
+      margin-bottom: 10px;
+    }
+    .muted {
+      opacity: 0.9;
+      font-size: 0.92rem;
+    }
+
+    #about .content { max-width: 780px; }
+
+    #portfolio .card { backdrop-filter: blur(4px); }
+
+    .portfolio-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .portfolio-tab {
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      border: 1px solid rgba(0,0,0,0.1);
+      background: rgba(255,255,255,0.85);
+      opacity: 0.7;
+      transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+    }
+    .portfolio-tab.active {
+      background: #1b4d3e;
+      color: #fdf8ea;
+      opacity: 1;
+      border-color: transparent;
+    }
+    .portfolio-block { display: none; }
+    .portfolio-block.active { display: block; }
+
+    .portfolio-steps {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 22px;
+      align-items: center;
+      margin-top: 10px;
+    }
+    @media (max-width: 900px) {
+      .portfolio-steps { grid-template-columns: minmax(0, 1fr); }
+    }
+    .portfolio-steps ul {
+      margin-top: 6px;
+      margin-left: 18px;
+    }
+    .portfolio-pack-card {
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.94);
+      box-shadow: 0 12px 26px rgba(58, 96, 72, 0.35);
+      padding: 10px;
+      transform: translateY(0);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .portfolio-pack-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(58,96,72,0.45);
+    }
+
+    /* НОВЫЙ БЛОК: ПРОЦЕСС ОБРАБОТКИ */
+    .processing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+    .processing-card {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .processing-photo img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+    }
+    @media (max-width: 768px) {
+      .processing-photo img { height: 170px; }
+    }
+    .processing-body {
+      padding: 14px 16px 16px;
+    }
+    .processing-step {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 6px;
+    }
+    .processing-caption {
+      font-size: 0.9rem;
+      opacity: 0.92;
+    }
+
+    #advantages .card { min-height: 160px; }
+
+    .two-cols {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
+    @media (max-width: 900px) {
+      .two-cols { grid-template-columns: minmax(0, 1fr); }
+    }
+    .list-check { list-style: none; }
+    .list-check li {
+      margin-bottom: 6px;
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+    }
+    .list-check li::before {
+      content: "✓";
+      color: #1b4d3e;
+      margin-top: 1px;
+      font-size: 0.9rem;
+    }
+    .mini-chart {
+      height: 140px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(27,77,62,0.12), rgba(94,194,140,0.16));
+      position: relative;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+    .mini-chart-bar {
+      position: absolute;
+      bottom: 0;
+      width: 24%;
+      border-radius: 10px 10px 0 0;
+      background: linear-gradient(180deg, #5ec28c, #2f7a57);
+      box-shadow: 0 10px 18px rgba(41, 113, 75, 0.7);
+      transform-origin: bottom;
+      animation: chartGrow 3s ease-out forwards;
+    }
+    .mini-chart-bar:nth-child(1) { left: 8%;  height: 44%; animation-delay: 0.1s; }
+    .mini-chart-bar:nth-child(2) { left: 36%; height: 64%; animation-delay: 0.2s; }
+    .mini-chart-bar:nth-child(3) { left: 64%; height: 86%; animation-delay: 0.3s; }
+    @keyframes chartGrow {
+      from { transform: scaleY(0.1); }
+      to   { transform: scaleY(1); }
+    }
+
+    #story .content { max-width: 800px; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px;
+    }
+    @media (max-width: 800px) {
+      .team-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+    .team-card {
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+      display: grid;
+      grid-template-columns: 0.95fr 1.1fr;
+      transform: translateY(0);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .team-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 34px rgba(0,0,0,0.16);
+    }
+    @media (max-width: 700px) {
+      .team-card { grid-template-columns: minmax(0, 1fr); }
+    }
+    .team-photo { position: relative; overflow: hidden; }
+    .team-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.03);
+      transition: transform 0.5s ease;
+    }
+    .team-card:hover .team-photo img { transform: scale(1.06); }
+    .team-photo::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(0,0,0,0.38), transparent);
+    }
+    .team-info {
+      padding: 16px 18px 18px;
+      position: relative;
+      z-index: 1;
+    }
+    .team-role {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      opacity: 0.7;
+      margin-bottom: 4px;
+    }
+    .team-name {
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+    .team-desc {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    #contacts .contacts-layout {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    #contacts .contacts-text {
+      flex: 1 1 260px;
+      max-width: 520px;
+    }
+    #contacts .contacts-card {
+      flex: 0 0 260px;
+      max-width: 360px;
+      text-align: center;
+    }
+    #contacts .contacts-card .btn {
+      width: 100%;
+      justify-content: center;
+    }
+    #contacts .contacts-meta {
+      font-size: 0.86rem;
+      opacity: 0.85;
+      margin-top: 10px;
+      text-align: left;
+    }
+    #contacts .contacts-meta-title {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    #contacts .contacts-meta-list {
+      list-style: none;
+      margin-top: 4px;
+    }
+    #contacts .contacts-meta-list li {
+      margin-bottom: 4px;
+    }
+    @media (max-width: 800px) {
+      #contacts .contacts-layout {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      #contacts .contacts-card .btn { width: 100%; }
+      #contacts .contacts-meta { text-align: left; }
+    }
+
+    footer {
+      padding: 24px 0 26px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      background: rgba(236, 244, 239, 0.96);
+      position: relative;
+      z-index: 2;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      opacity: 0.9;
+    }
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-left img {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mb-8 { margin-bottom: 8px; }
+    .mb-12 { margin-bottom: 12px; }
+    .mb-20 { margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ПУЗЫРЬКИ -->
+  <div class="bubble-layer" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="container">
+        <div class="header-grid">
+          <div class="lang-switch" aria-label="Switch language">
+            <button class="lang-btn active" data-lang="ru">RU</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+
+          <div class="logo-block">
+            <img src="image/logo-ecuador-bolivia.png" alt="Логотип Ecuador & Bolivia Coffee & Tea Co." />
+            <div>
+              <div class="logo-text-main" data-i18n="brand_name">Ecuador & Bolivia Coffee & Tea Co.</div>
+              <div class="logo-text-sub" data-i18n="brand_sub">From the Andes’ Heart</div>
+            </div>
+          </div>
+
+          <div class="burger" id="burger" aria-label="Открыть меню">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-nav">
+        <div class="container">
+          <nav>
+            <div class="nav-links" id="nav-links">
+              <a href="#about" data-nav data-i18n="nav_about">О компании</a>
+              <a href="#portfolio" data-nav data-i18n="nav_portfolio">Портфель</a>
+              <a href="#advantages" data-nav data-i18n="nav_advantages">Преимущества</a>
+              <a href="#market" data-nav data-i18n="nav_market">Рынок</a>
+              <a href="#investment" data-nav data-i18n="nav_investment">Инвестиции</a>
+              <a href="#story" data-nav data-i18n="nav_story">История</a>
+              <a href="#team" data-nav data-i18n="nav_team">Команда</a>
+              <a href="#contacts" data-nav data-i18n="nav_contacts">Контакты</a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container hero-grid reveal">
+      <div>
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span data-i18n="hero_badge">Инвестиционный проект напитков из Анд</span>
+        </div>
+        <h1 data-i18n="hero_title">Инвестиции в чай, кофе и суперфуды из сердца Анд</h1>
+        <p class="hero-subtitle" data-i18n="hero_subtitle">
+          Ecuador &amp; Bolivia Coffee &amp; Tea Co. объединяет производителей Эквадора и Боливии
+          в единую экспортную платформу андинских чаёв, кофе и Quinua Real.
+        </p>
+        <p class="hero-tagline" data-i18n="hero_slogan">
+          Andean Sun Blend — андинское солнечное слияние вкусов и идей.
+        </p>
+        <ul class="hero-bullets">
+          <li data-i18n="hero_b1">Широкий портфель: чай, кофе и суперфуды в единой концепции wellness.</li>
+          <li data-i18n="hero_b2">Высокогорный терруар Анд и устойчивые связи с локальными фермерами.</li>
+          <li data-i18n="hero_b3">Готовность к выходу на международные рынки и формат партнёрства Ayni.</li>
+        </ul>
+
+        <div class="hero-actions">
+          <a href="#about" class="btn btn-gradient" data-i18n="hero_btn_about">
+            О компании
+          </a>
+        </div>
+
+        <p class="hero-note" data-i18n="hero_note">
+          From the Andes’ Heart to your market — мы настроены на долгосрочное партнёрство с инвесторами и дистрибьюторами.
+        </p>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-inner">
+            <div class="hero-slider-wrapper">
+              <div class="hero-coffee-pack" id="hero-slider">
+                <div class="hero-slide active">
+                  <img
+                    src="image/green-coffee-hands.jpg"
+                    alt="Зелёный кофе в руках фермера в Эквадоре."
+                  />
+                </div>
+                <div class="hero-slide">
+                  <img
+                    src="image/pack-transparent-1kg.jpg"
+                    alt="Обжаренный андинский кофе в прозрачном пакете с клапаном."
+                  />
+                </div>
+              </div>
+              <button class="hero-arrow hero-arrow-left" id="hero-prev" aria-label="Предыдущее фото">‹</button>
+              <button class="hero-arrow hero-arrow-right" id="hero-next" aria-label="Следующее фото">›</button>
+            </div>
+          </div>
+          <div class="hero-floating-label">
+            <span>☕</span>
+            <span data-i18n="hero_pack_label">Andean Brews · high altitude roast</span>
+          </div>
+          <img class="hero-logo-mark" src="image/logo-ecuador-bolivia.png"
+               alt="Логотип Ecuador & Bolivia Coffee & Tea Co." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container reveal">
+      <p class="tagline" data-i18n="about_tag">Dos Tierras, Una Pasión</p>
+      <h2 data-i18n="about_title">Две земли, одна страсть к напиткам</h2>
+      <div class="content">
+        <p data-i18n="about_p1">
+          Ecuador &amp; Bolivia Coffee &amp; Tea Co. — платформа, которая соединяет производителей из Эквадора и Боливии
+          с инвесторами и партнёрами по всему миру. Наши регионы — это Анды, Амазония и Альтиплано, где напитки рождаются
+          из высоты, солнца и богатых почв.
+        </p>
+        <p data-i18n="about_p2">
+          Мы развиваем портфель андинских чаёв, кофе и суперфудов Quinua Real — от классики до функциональных и CBD-линеек,
+          сохраняя происхождение и добавляя современный дизайн упаковки и формат сервиса.
+        </p>
+        <p data-i18n="about_p3">
+          Dos Almas, Una Pasión — две души, одно стремление создавать напитки, которые отражают характер Анд и ценность
+          устойчивого сотрудничества.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="container reveal">
+      <p class="tagline" data-i18n="portfolio_tag">Andean Sun Blend</p>
+      <h2 data-i18n="portfolio_title">Портфель продуктов</h2>
+
+      <div class="portfolio-tabs">
+        <button class="portfolio-tab active" data-portfolio-tab="tea" data-i18n="portfolio_tab_tea">
+          Чай и функциональные напитки
+        </button>
+        <button class="portfolio-tab" data-portfolio-tab="coffee" data-i18n="portfolio_tab_coffee">
+          Кофе
+        </button>
+        <button class="portfolio-tab" data-portfolio-tab="quinoa" data-i18n="portfolio_tab_quinoa">
+          Quinua Real
+        </button>
+      </div>
+
+      <div class="portfolio-block active" data-portfolio-block="tea">
+        <div class="grid-3">
+          <div class="card">
+            <p class="card-tag" data-i18n="tea_tag1">Cumbre del Sabor</p>
+            <h3 data-i18n="tea_title1">Вершина вкуса андинских чаёв</h3>
+            <p class="muted" data-i18n="tea_p1">
+              Линейка классических чёрных и зелёных чаёв с андинским терруаром, купажированных для HoReCa и розницы.
+            </p>
+          </div>
+          <div class="card">
+            <p class="card-tag" data-i18n="tea_tag2">SANGAY &amp; Guayusa Tea Code</p>
+            <h3 data-i18n="tea_title2">Энергия леса и функциональные напитки</h3>
+            <p class="muted" data-i18n="tea_p2">
+              Травяные сборы SANGAY с андинскими травами, гуайуса Guayusa Tea Code и другие функциональные напитки
+              для дневной энергии и вечернего восстановления.
+            </p>
+          </div>
+          <div class="card">
+            <p class="card-tag" data-i18n="tea_tag3">Paccha CBD &amp; Altura Dorada</p>
+            <h3 data-i18n="tea_title3">Wellness и премиальные высоты</h3>
+            <p class="muted" data-i18n="tea_p3">
+              Линии с CBD и специализированные купажи Altura Dorada для SPA, отелей и премиальных чайных карт.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-block" data-portfolio-block="coffee">
+        <div class="card">
+          <p class="card-tag" data-i18n="coffee_tag">Andean Brews</p>
+          <h3 data-i18n="coffee_title">Кофе из Эквадора и Боливии</h3>
+          <p class="muted" data-i18n="coffee_p1">
+            Высокогорный кофе с высот 1 400–2 000 м над уровнем моря, ферментация на семейных фермах и обжарка под
+            потребности локального рынка партнёра — от эспрессо до фильтра.
+          </p>
+          <p class="muted" data-i18n="coffee_p2">
+            Мы выстраиваем цепочку «от фермы до чашки», сохраняя происхождение партий и прозрачность условий кооперации.
+          </p>
+
+          <div class="portfolio-steps">
+            <div>
+              <h3 data-i18n="coffee_steps_title">От фермы до чашки</h3>
+              <ul>
+                <li data-i18n="coffee_step1"><strong>Шаг 1 · Сушка зёрен.</strong> Классическая и экспериментальная обработка: washed, honey, natural.</li>
+                <li data-i18n="coffee_step2"><strong>Шаг 2 · Зелёный кофе.</strong> Отбор, калибровка и подготовка экспортных партий.</li>
+                <li data-i18n="coffee_step3"><strong>Шаг 3 · Обжаренный кофе.</strong> Создание фирменных профилей для HoReCa и specialty-сегмента.</li>
+              </ul>
+
+              <div class="grid-2" style="margin-top: 12px;">
+                <div class="card">
+                  <p class="card-tag" data-i18n="coffee_pack_tag">Упаковка</p>
+                  <p class="muted" data-i18n="coffee_pack_p1">
+                    Пакеты 1 кг для HoReCa, золотые фольгированные мешки для обжарщиков и stand-up pouch с клапаном для розницы.
+                  </p>
+                </div>
+                <div class="card">
+                  <p class="card-tag" data-i18n="coffee_pack_tag2">Форматы</p>
+                  <p class="muted" data-i18n="coffee_pack_p2">
+                    Линии под private label, co-branding с локальными обжарщиками и собственные бренды Andean Brews.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-pack-card">
+              <img
+                src="image/roasted-coffee-bolivia.jpg"
+                alt="Свежая обжарка кофе в упаковке Ecuador & Bolivia Coffee & Tea Co."
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-block" data-portfolio-block="quinoa">
+        <div class="card">
+          <p class="card-tag" data-i18n="quinoa_tag">Quinua Real</p>
+          <h3 data-i18n="quinoa_title">Суперфуд с высоты Альтиплано</h3>
+          <div class="grid-3">
+            <div>
+              <p class="chip" data-i18n="quinoa_chip1">Готовые продукты</p>
+              <p class="muted" data-i18n="quinoa_p1">
+                Лапша, паста, десерты и готовые смеси на основе королевской киноа для ритейла и HoReCa.
+              </p>
+            </div>
+            <div>
+              <p class="chip" data-i18n="quinoa_chip2">Ингредиенты</p>
+              <p class="muted" data-i18n="quinoa_p2">
+                Зерно, хлопья, мука и puffed-форматы для пищевых производств и функциональных снеков.
+              </p>
+            </div>
+            <div>
+              <p class="chip" data-i18n="quinoa_chip3">Цветовые линейки</p>
+              <p class="muted" data-i18n="quinoa_p3">
+                Black, red, white и tricolor Quinua Real с прослеживаемым происхождением и устойчивой логистикой.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROCESSING: FROM CHERRY TO GREEN BEAN -->
+  <section id="processing">
+    <div class="container reveal">
+      <p class="tagline" data-i18n="processing_tag">From cherry to green bean</p>
+      <h2 data-i18n="processing_title">От ягоды до зелёного зерна: как мы обрабатываем кофе</h2>
+      <p class="muted mb-12" data-i18n="processing_intro">
+        На станции обработки кофе в Боливии каждая партия проходит полный путь — от свежей ягоды до отсортированного
+        зелёного зерна в мешках, готовых к экспорту. Ниже — живые кадры этого процесса.
+      </p>
+
+      <div class="processing-grid">
+        <article class="card processing-card">
+          <div class="processing-photo">
+            <img src="image/processing-equipment-1.jpg"
+                 alt="Оборудование на станции первичной обработки кофе." />
+          </div>
+          <div class="processing-body">
+            <div class="processing-step" data-i18n="processing_step1">Шаг 1 · Приём и подготовка</div>
+            <p class="processing-caption" data-i18n="processing_cap1">
+              Линия первичной обработки принимает ягоды с плантаций и готовит их к дальнейшей переработке.
+            </p>
+          </div>
+        </article>
+
+        <article class="card processing-card">
+          <div class="processing-photo">
+            <img src="image/processing-cherries-tank.jpg"
+                 alt="Свежесобранные кофейные ягоды в приёмном бассейне." />
+          </div>
+          <div class="processing-body">
+            <div class="processing-step" data-i18n="processing_step2">Шаг 2 · Свежая ягода</div>
+            <p class="processing-caption" data-i18n="processing_cap2">
+              Спелые кофейные ягоды поступают в бассейн перед депульпацией и сортировкой.
+            </p>
+          </div>
+        </article>
+
+        <article class="card processing-card">
+          <div class="processing-photo">
+            <img src="image/processing-washing-channel.jpg"
+                 alt="Кофейные зёрна в промывочном канале с водой." />
+          </div>
+          <div class="processing-body">
+            <div class="processing-step" data-i18n="processing_step3">Шаг 3 · Промывка и ферментация</div>
+            <p class="processing-caption" data-i18n="processing_cap3">
+              В водных каналах отделяется мякоть, удаляются дефекты и стабилизируется вкус будущего кофе.
+            </p>
+          </div>
+        </article>
+
+        <article class="card processing-card">
+          <div class="processing-photo">
+            <img src="image/processing-drying-bed-close.jpg"
+                 alt="Кофейные зёрна, разложенные тонким слоем для сушки." />
+          </div>
+          <div class="processing-body">
+            <div class="processing-step" data-i18n="processing_step4">Шаг 4 · Сушка</div>
+            <p class="processing-caption" data-i18n="processing_cap4">
+              Зёрна сушатся на африканских кроватях и площадках под солнцем до целевой влажности.
+            </p>
+          </div>
+        </article>
+
+        <article class="card processing-card">
+          <div class="processing-photo">
+            <img src="image/processing-drying-beds-far.jpg"
+                 alt="Работник распределяет кофе на длинных столах для сушки." />
+          </div>
+          <div class="processing-body">
+            <div class="processing-step" data-i18n="processing_step5">Шаг 5 · Ручной контроль</div>
+            <p class="processing-caption" data-i18n="processing_cap5">
+              Команда регулярно переворачивает кофе и убирает дефектные зёрна вручную.
+            </p>
+          </div>
+        </article>
+
+        <article class="card processing-card">
+          <div class="processing-photo">
+            <img src="image/processing-sorting-table.jpg"
+                 alt="Сортировочный стол для зелёного кофе." />
+          </div>
+          <div class="processing-body">
+            <div class="processing-step" data-i18n="processing_step6">Шаг 6 · Сортировка</div>
+            <p class="processing-caption" data-i18n="processing_cap6">
+              После сушки зёрна проходят по вибростолам и ситам, сортируясь по размеру и плотности.
+            </p>
+          </div>
+        </article>
+
+        <article class="card processing-card">
+          <div class="processing-photo">
+            <img src="image/processing-bagging-hands.jpg"
+                 alt="Зелёный кофе засыпают в мешки." />
+          </div>
+          <div class="processing-body">
+            <div class="processing-step" data-i18n="processing_step7">Шаг 7 · Фасовка</div>
+            <p class="processing-caption" data-i18n="processing_cap7">
+              Отсортированный кофе фасуется в мешки по стандартным экспортным форматам.
+            </p>
+          </div>
+        </article>
+
+        <article class="card processing-card">
+          <div class="processing-photo">
+            <img src="image/processing-bag-close.jpg"
+                 alt="Мешок, наполненный зелёным кофе." />
+          </div>
+          <div class="processing-body">
+            <div class="processing-step" data-i18n="processing_step8">Шаг 8 · Готовые партии</div>
+            <p class="processing-caption" data-i18n="processing_cap8">
+              Готовые мешки с зелёным кофе ждут отправки на склады и к обжарщикам.
+            </p>
+          </div>
+        </article>
+
+        <article class="card processing-card">
+          <div class="processing-photo">
+            <img src="image/processing-mill-exterior.jpg"
+                 alt="Здание станции обработки кофе среди зелёных холмов." />
+          </div>
+          <div class="processing-body">
+            <div class="processing-step" data-i18n="processing_step9">Локация</div>
+            <p class="processing-caption" data-i18n="processing_cap9">
+              Станция окружена тропическими лесами Боливии — здесь начинается путь нашего кофе.
+            </p>
+          </div>
+        </article>
+
+        <article class="card processing-card">
+          <div class="processing-photo">
+            <img src="image/processing-drying-yard.jpg"
+                 alt="Сушка кофе на площадке перед складом." />
+          </div>
+          <div class="processing-body">
+            <div class="processing-step" data-i18n="processing_step10">Экспортный двор</div>
+            <p class="processing-caption" data-i18n="processing_cap10">
+              Финальная проверка и подготовка партий перед формированием контейнеров и отправкой.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVANTAGES -->
+  <section id="advantages">
+    <div class="container reveal">
+      <p class="tagline" data-i18n="adv_tag">Investment highlights</p>
+      <h2 data-i18n="adv_title">Почему это сильная инвестиционная возможность</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3 data-i18n="adv1_title">Широкий портфель</h3>
+          <p class="muted" data-i18n="adv1_p">
+            Чай, кофе и суперфуды в одном проекте: больше точек входа на рынок и диверсификация риска.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="adv2_title">Wellness &amp; функциональность</h3>
+          <p class="muted" data-i18n="adv2_p">
+            Линии functional beverages, CBD-продукты и суперфуды соответствуют мировым трендам здоровья.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="adv3_title">Андинское происхождение</h3>
+          <p class="muted" data-i18n="adv3_p">
+            Высокогорный терруар, уникальные сорта и истории конкретных ферм создают добавленную стоимость бренда.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="adv4_title">Экспортная готовность</h3>
+          <p class="muted" data-i18n="adv4_p">
+            Продуманные форматы упаковки, логистические цепочки и документация для международных поставок.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="adv5_title">Бренды и дизайн</h3>
+          <p class="muted" data-i18n="adv5_p">
+            Концепты Cumbre del Sabor, Andean Brews и Quinua Real позволяют развивать портфель по разным каналам.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="adv6_title">Синергия двух стран</h3>
+          <p class="muted" data-i18n="adv6_p">
+            Эквадор и Боливия дополняют друг друга по терруарам, культурам и логистике, создавая устойчивую базу поставок.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET -->
+  <section id="market">
+    <div class="container reveal">
+      <p class="tagline" data-i18n="market_tag">Global trends</p>
+      <h2 data-i18n="market_title">Рынок андинских чаёв, кофе и суперфудов</h2>
+      <p class="mb-12 muted" data-i18n="market_sub">
+        Мировой рынок здоровых напитков и суперфудов растёт быстрее классической FMCG-категории. Андинские origin-продукты
+        занимают в нём особое место.
+      </p>
+      <div class="two-cols">
+        <div>
+          <h3 data-i18n="market_left_title">Мировые тренды</h3>
+          <ul class="list-check">
+            <li data-i18n="market_left1">Рост функциональных напитков и ready-to-drink решений.</li>
+            <li data-i18n="market_left2">Спрос на суперфуды и растительную кухню как часть повседневного рациона.</li>
+            <li data-i18n="market_left3">Интерес к traceable origin: потребитель хочет знать, откуда продукт.</li>
+            <li data-i18n="market_left4">Развитие онлайн-каналов, подписок и direct-to-consumer моделей.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 data-i18n="market_right_title">Наша ниша</h3>
+          <p class="muted" data-i18n="market_right_p1">
+            Ecuador &amp; Bolivia Coffee &amp; Tea Co. фокусируется на андинском origin, функциональных напитках
+            и Quinua Real как ключевом суперфуде региона.
+          </p>
+          <p class="muted" data-i18n="market_right_p2">
+            Партнёрство с локальными инвесторами позволяет адаптировать портфель под конкретный рынок — от HoReCa и
+            specialty-кофе до wellness-ритейла и e-commerce.
+          </p>
+          <div class="mini-chart" aria-hidden="true">
+            <div class="mini-chart-bar"></div>
+            <div class="mini-chart-bar"></div>
+            <div class="mini-chart-bar"></div>
+          </div>
+          <p class="mb-8" style="font-size:0.78rem;opacity:0.75;" data-i18n="market_chart_note">
+            Схематичный рост нишевых категорий: superfoods, functional beverages, origin-coffee.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVESTMENT -->
+  <section id="investment">
+    <div class="container reveal">
+      <p class="tagline" data-i18n="inv_tag">Ayni Brews</p>
+      <h2 data-i18n="inv_title">Партнёрство в духе Анд</h2>
+      <p class="muted mb-12" data-i18n="inv_intro">
+        В культуре Анд ayni — это взаимный обмен и совместное создание ценности. Мы переносим этот принцип в формат
+        работы с инвесторами и дистрибьюторами.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3 data-i18n="inv_col1_title">Форматы участия</h3>
+          <p class="muted" data-i18n="inv_col1_p">
+            Инвестиции в развитие брендов на вашем рынке, совместные предприятия, эксклюзивная дистрибуция или участие
+            в экспортном холдинге.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="inv_col2_title">На что идут инвестиции</h3>
+          <p class="muted" data-i18n="inv_col2_p">
+            Развитие портфеля, сертификация и логистика, маркетинг и бренд-построение, расширение производственных
+            мощностей и устойчивых коопераций с фермерами.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="inv_col3_title">Что получает инвестор</h3>
+          <p class="muted" data-i18n="inv_col3_p">
+            Долю в растущем андинском портфеле, доступ к origin-продуктам и возможность выстраивать уникальное
+            позиционирование на своём рынке.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story">
+    <div class="container reveal">
+      <p class="tagline" data-i18n="story_tag">From the Andes’ Heart</p>
+      <h2 data-i18n="story_title">История бренда</h2>
+      <div class="content">
+        <p data-i18n="story_p1">
+          Проект родился из личных маршрутов по Эквадору и Боливии, встреч с фермерскими семьями и дегустаций, которые
+          невозможно забыть. Мы увидели, как много в Андах качественных продуктов и как мало из них доходит до полок
+          за пределами региона.
+        </p>
+        <p data-i18n="story_p2">
+          Dos Tierras, Dos Almas, Una Pasión — две страны и две команды, которые объединились, чтобы создать
+          устойчивую экспортную платформу напитков и суперфудов. Мы бережно относимся к происхождению, но говорим
+          на языке современного брендинга и digital-каналов.
+        </p>
+        <p data-i18n="story_p3">
+          Наша цель — сделать так, чтобы андинский чай, кофе и Quinua Real стали естественной частью повседневной
+          жизни людей по всему миру.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="container reveal">
+      <p class="tagline" data-i18n="team_tag">People behind the project</p>
+      <h2 data-i18n="team_title">Команда Ecuador &amp; Bolivia Coffee &amp; Tea Co.</h2>
+      <div class="team-grid">
+        <article class="team-card">
+          <div class="team-photo">
+            <img src="image/founder-roman.jpg"
+                 alt="Чукавин Роман Александрович, сооснователь проекта." />
+          </div>
+          <div class="team-info">
+            <div class="team-role" data-i18n="team_roman_role">Сооснователь и партнёр проекта</div>
+            <div class="team-name" data-i18n="team_roman_name">Чукавин Роман Александрович</div>
+            <p class="team-desc" data-i18n="team_roman_desc">
+              Отвечает за Эквадор, развитие партнёрств с фермерами и локальными производителями, работу на месте и
+              построение экспортных цепочек поставок.
+            </p>
+          </div>
+        </article>
+
+        <article class="team-card">
+          <div class="team-photo">
+            <img src="image/founder-valeriy.jpg"
+                 alt="Телегин Валерий Александрович, сооснователь проекта." />
+          </div>
+          <div class="team-info">
+            <div class="team-role" data-i18n="team_valeriy_role">Сооснователь и партнёр проекта</div>
+            <div class="team-name" data-i18n="team_valeriy_name">Телегин Валерий Александрович</div>
+            <p class="team-desc" data-i18n="team_valeriy_desc">
+              Курирует стратегию, продуктовый портфель, коммуникацию с инвесторами и дистрибьюторами, digital-поддержку
+              и развитие бренда на международных рынках.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTS -->
+  <section id="contacts">
+    <div class="container reveal">
+      <p class="tagline" data-i18n="contacts_tag">Contacts</p>
+      <h2 data-i18n="contacts_title">Контакты</h2>
+      <div class="contacts-layout">
+        <div class="contacts-text">
+          <p class="muted" data-i18n="contacts_p1">
+            Если вы хотите обсудить партнёрство, запросить презентацию проекта или задать дополнительные вопросы,
+            вы можете напрямую связаться с командой Ecuador &amp; Bolivia Coffee &amp; Tea Co. в Telegram.
+          </p>
+          <p class="muted" data-i18n="contacts_p2">
+            Формат диалога: кратко расскажите, кто вы, из какой страны и какой формат сотрудничества рассматриваете
+            (инвестиции, дистрибуция, private label и т.д.).
+          </p>
+        </div>
+        <div class="contacts-card card">
+          <h3 data-i18n="contacts_card_title">Связаться в Telegram</h3>
+          <a href="https://t.me/ValerioTelegin" target="_blank" rel="noopener"
+             class="btn btn-gradient" data-i18n="contacts_btn">
+            Связаться с нами
+          </a>
+          <div class="contacts-meta">
+            <span class="contacts-meta-title" data-i18n="contacts_meta_title">Контактные данные проекта:</span>
+            <ul class="contacts-meta-list">
+              <li>
+                <strong data-i18n="contacts_tg_label">Telegram:</strong>
+                <span>@ValerioTelegin</span>
+              </li>
+              <li>
+                <strong data-i18n="contacts_phone_label">Телефон:</strong>
+                <a href="tel:+79933450994">+7&nbsp;993&nbsp;345-09-94</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <img src="image/logo-ecuador-bolivia.png" alt="" />
+        <span data-i18n="footer_left">
+          Ecuador &amp; Bolivia Coffee &amp; Tea Co. — Andean Brews From the Andes’ Heart.
+        </span>
+      </div>
+      <div class="footer-links">
+        <span>© 2025</span>
+        <a href="#hero" data-i18n="footer_top">В начало страницы</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // ПУЗЫРЬКИ
+  (function createBubbles() {
+    const layer = document.querySelector('.bubble-layer');
+    if (!layer) return;
+    const count = 24;
+    for (let i = 0; i < count; i++) {
+      const b = document.createElement('div');
+      b.className = 'bubble';
+
+      const size = 50 + Math.random() * 90;
+      const x = Math.random() * 100;
+      const duration = 28 + Math.random() * 18;
+      const delay = Math.random() * -30;
+      const scale = 0.75 + Math.random() * 0.6;
+
+      b.style.width = size + 'px';
+      b.style.height = size + 'px';
+      b.style.setProperty('--x', x + 'vw');
+      b.style.setProperty('--scale', scale);
+      b.style.animationDuration = duration + 's, ' + (10 + Math.random() * 8) + 's';
+      b.style.animationDelay = delay + 's, ' + delay + 's';
+      b.style.opacity = 0.55 + Math.random() * 0.3;
+
+      const green = Math.random() > 0.5;
+      if (green) {
+        b.style.background = 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.98), rgba(70,160,111,0.95))';
+        b.style.boxShadow = '0 10px 24px rgba(32,102,74,0.55)';
+      } else {
+        b.style.background = 'radial-gradient(circle at 30% 30%, rgba(255,248,233,0.98), rgba(153,102,64,0.96))';
+        b.style.boxShadow = '0 10px 24px rgba(97,62,35,0.6)';
+      }
+
+      layer.appendChild(b);
+    }
+  })();
+
+  // HERO SLIDER
+  (function heroSlider() {
+    const slider = document.getElementById('hero-slider');
+    if (!slider) return;
+    const slides = slider.querySelectorAll('.hero-slide');
+    if (slides.length < 2) return;
+
+    const btnPrev = document.getElementById('hero-prev');
+    const btnNext = document.getElementById('hero-next');
+
+    let current = 0;
+    let isAnimating = false;
+
+    function show(i) {
+      if (isAnimating || i === current) return;
+      isAnimating = true;
+
+      slides.forEach((s, idx) => {
+        s.classList.toggle('active', idx === i);
+      });
+
+      current = i;
+      setTimeout(() => { isAnimating = false; }, 650);
+    }
+
+    function next() {
+      show((current + 1) % slides.length);
+    }
+
+    function prev() {
+      show((current - 1 + slides.length) % slides.length);
+    }
+
+    let timer = setInterval(next, 6000);
+
+    slider.addEventListener('click', () => {
+      next();
+      clearInterval(timer);
+      timer = setInterval(next, 6000);
+    });
+
+    if (btnNext) {
+      btnNext.addEventListener('click', (e) => {
+        e.stopPropagation();
+        next();
+        clearInterval(timer);
+        timer = setInterval(next, 6000);
+      });
+    }
+
+    if (btnPrev) {
+      btnPrev.addEventListener('click', (e) => {
+        e.stopPropagation();
+        prev();
+        clearInterval(timer);
+        timer = setInterval(next, 6000);
+      });
+    }
+  })();
+
+  // BURGER
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('nav-links');
+
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      burger.classList.remove('active');
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // SMOOTH SCROLL
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const id = this.getAttribute('href').substring(1);
+      const target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ACTIVE NAV ON SCROLL
+  const sections = document.querySelectorAll('section[id]');
+  const navItems = document.querySelectorAll('[data-nav]');
+  const observerNav = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navItems.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.45 });
+  sections.forEach(sec => observerNav.observe(sec));
+
+  // SCROLL REVEAL
+  const revealEls = document.querySelectorAll('.reveal');
+  const observerReveal = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observerReveal.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observerReveal.observe(el));
+
+  // PORTФОЛИО ТАБЫ
+  const tabButtons = document.querySelectorAll('.portfolio-tab');
+  const tabBlocks = document.querySelectorAll('.portfolio-block');
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.portfolioTab;
+      tabButtons.forEach(b => b.classList.toggle('active', b === btn));
+      tabBlocks.forEach(block => {
+        block.classList.toggle('active', block.dataset.portfolioBlock === key);
+      });
+    });
+  });
+
+  // МУЛЬТИЯЗЫЧНОСТЬ
+  const translations = {
+    ru: {
+      brand_name: "Ecuador & Bolivia Coffee & Tea Co.",
+      brand_sub: "From the Andes’ Heart",
+
+      nav_about: "О компании",
+      nav_portfolio: "Портфель",
+      nav_advantages: "Преимущества",
+      nav_market: "Рынок",
+      nav_investment: "Инвестиции",
+      nav_story: "История",
+      nav_team: "Команда",
+      nav_contacts: "Контакты",
+
+      hero_badge: "Инвестиционный проект напитков из Анд",
+      hero_title: "Инвестиции в чай, кофе и суперфуды из сердца Анд",
+      hero_subtitle:
+        "Ecuador & Bolivia Coffee & Tea Co. объединяет производителей Эквадора и Боливии в единую экспортную платформу андинских чаёв, кофе и Quinua Real.",
+      hero_slogan:
+        "Andean Sun Blend — андинское солнечное слияние вкусов и идей.",
+      hero_b1:
+        "Широкий портфель: чай, кофе и суперфуды в единой концепции wellness.",
+      hero_b2:
+        "Высокогорный терруар Анд и устойчивые связи с локальными фермерами.",
+      hero_b3:
+        "Готовность к выходу на международные рынки и формат партнёрства Ayni.",
+      hero_btn_about: "О компании",
+      hero_note:
+        "From the Andes’ Heart to your market — мы настроены на долгосрочное партнёрство с инвесторами и дистрибьюторами.",
+      hero_pack_label: "Andean Brews · high altitude roast",
+
+      about_tag: "Dos Tierras, Una Pasión",
+      about_title: "Две земли, одна страсть к напиткам",
+      about_p1:
+        "Ecuador & Bolivia Coffee & Tea Co. — платформа, которая соединяет производителей из Эквадора и Боливии с инвесторами и партнёрами по всему миру. Наши регионы — это Анды, Амазония и Альтиплано, где напитки рождаются из высоты, солнца и богатых почв.",
+      about_p2:
+        "Мы развиваем портфель андинских чаёв, кофе и суперфудов Quinua Real — от классики до функциональных и CBD-линеек, сохраняя происхождение и добавляя современный дизайн упаковки и формат сервиса.",
+      about_p3:
+        "Dos Almas, Una Pasión — две души, одно стремление создавать напитки, которые отражают характер Анд и ценность устойчивого сотрудничества.",
+
+      portfolio_tag: "Andean Sun Blend",
+      portfolio_title: "Портфель продуктов",
+      portfolio_tab_tea: "Чай и функциональные напитки",
+      portfolio_tab_coffee: "Кофе",
+      portfolio_tab_quinoa: "Quinua Real",
+
+      tea_tag1: "Cumbre del Sabor",
+      tea_title1: "Вершина вкуса андинских чаёв",
+      tea_p1:
+        "Линейка классических чёрных и зелёных чаёв с андинским терруаром, купажированных для HoReCa и розницы.",
+      tea_tag2: "SANGAY & Guayusa Tea Code",
+      tea_title2: "Энергия леса и функциональные напитки",
+      tea_p2:
+        "Травяные сборы SANGAY с андинскими травами, гуайуса Guayusa Tea Code и другие функциональные напитки для дневной энергии и вечернего восстановления.",
+      tea_tag3: "Paccha CBD & Altura Dorada",
+      tea_title3: "Wellness и премиальные высоты",
+      tea_p3:
+        "Линии с CBD и специализированные купажи Altura Dorada для SPA, отелей и премиальных чайных карт.",
+
+      coffee_tag: "Andean Brews",
+      coffee_title: "Кофе из Эквадора и Боливии",
+      coffee_p1:
+        "Высокогорный кофе с высот 1 400–2 000 м над уровнем моря, ферментация на семейных фермах и обжарка под потребности локального рынка партнёра — от эспрессо до фильтра.",
+      coffee_p2:
+        "Мы выстраиваем цепочку «от фермы до чашки», сохраняя происхождение партий и прозрачность условий кооперации.",
+      coffee_steps_title: "От фермы до чашки",
+      coffee_step1:
+        "Шаг 1 · Сушка зёрен. Классическая и экспериментальная обработка: washed, honey, natural.",
+      coffee_step2:
+        "Шаг 2 · Зелёный кофе. Отбор, калибровка и подготовка экспортных партий.",
+      coffee_step3:
+        "Шаг 3 · Обжаренный кофе. Создание фирменных профилей для HoReCa и specialty-сегмента.",
+      coffee_pack_tag: "Упаковка",
+      coffee_pack_p1:
+        "Пакеты 1 кг для HoReCa, золотые фольгированные мешки для обжарщиков и stand-up pouch с клапаном для розницы.",
+      coffee_pack_tag2: "Форматы",
+      coffee_pack_p2:
+        "Линии под private label, co-branding с локальными обжарщиками и собственные бренды Andean Brews.",
+
+      quinoa_tag: "Quinua Real",
+      quinoa_title: "Суперфуд с высоты Альтиплано",
+      quinoa_chip1: "Готовые продукты",
+      quinoa_chip2: "Ингредиенты",
+      quinoa_chip3: "Цветовые линейки",
+      quinoa_p1:
+        "Лапша, паста, десерты и готовые смеси на основе королевской киноа для ритейла и HoReCa.",
+      quinoa_p2:
+        "Зерно, хлопья, мука и puffed-форматы для пищевых производств и функциональных снеков.",
+      quinoa_p3:
+        "Black, red, white и tricolor Quinua Real с прослеживаемым происхождением и устойчивой логистикой.",
+
+      /* Новый блок processing */
+      processing_tag: "From cherry to green bean",
+      processing_title: "От ягоды до зелёного зерна: как мы обрабатываем кофе",
+      processing_intro:
+        "На станции обработки кофе в Боливии каждая партия проходит полный путь — от свежей ягоды до отсортированного зелёного зерна в мешках, готовых к экспорту. Ниже — живые кадры этого процесса.",
+      processing_step1: "Шаг 1 · Приём и подготовка",
+      processing_step2: "Шаг 2 · Свежая ягода",
+      processing_step3: "Шаг 3 · Промывка и ферментация",
+      processing_step4: "Шаг 4 · Сушка",
+      processing_step5: "Шаг 5 · Ручной контроль",
+      processing_step6: "Шаг 6 · Сортировка",
+      processing_step7: "Шаг 7 · Фасовка",
+      processing_step8: "Шаг 8 · Готовые партии",
+      processing_step9: "Локация",
+      processing_step10: "Экспортный двор",
+      processing_cap1:
+        "Линия первичной обработки принимает ягоды с плантаций и готовит их к дальнейшей переработке.",
+      processing_cap2:
+        "Спелые кофейные ягоды поступают в бассейн перед депульпацией и сортировкой.",
+      processing_cap3:
+        "В водных каналах отделяется мякоть, удаляются дефекты и стабилизируется вкус будущего кофе.",
+      processing_cap4:
+        "Зёрна сушатся на африканских кроватях и площадках под солнцем до целевой влажности.",
+      processing_cap5:
+        "Команда регулярно переворачивает кофе и убирает дефектные зёрна вручную.",
+      processing_cap6:
+        "После сушки зёрна проходят по вибростолам и ситам, сортируясь по размеру и плотности.",
+      processing_cap7:
+        "Отсортированный кофе фасуется в мешки по стандартным экспортным форматам.",
+      processing_cap8:
+        "Готовые мешки с зелёным кофе ждут отправки на склады и к обжарщикам.",
+      processing_cap9:
+        "Станция окружена тропическими лесами Боливии — здесь начинается путь нашего кофе.",
+      processing_cap10:
+        "Финальная проверка и подготовка партий перед формированием контейнеров и отправкой.",
+
+      adv_tag: "Investment highlights",
+      adv_title: "Почему это сильная инвестиционная возможность",
+      adv1_title: "Широкий портфель",
+      adv1_p:
+        "Чай, кофе и суперфуды в одном проекте: больше точек входа на рынок и диверсификация риска.",
+      adv2_title: "Wellness & функциональность",
+      adv2_p:
+        "Линии functional beverages, CBD-продукты и суперфуды соответствуют мировым трендам здоровья.",
+      adv3_title: "Андинское происхождение",
+      adv3_p:
+        "Высокогорный терруар, уникальные сорта и истории конкретных ферм создают добавленную стоимость бренда.",
+      adv4_title: "Экспортная готовность",
+      adv4_p:
+        "Продуманные форматы упаковки, логистические цепочки и документация для международных поставок.",
+      adv5_title: "Бренды и дизайн",
+      adv5_p:
+        "Концепты Cumbre del Sabor, Andean Brews и Quinua Real позволяют развивать портфель по разным каналам.",
+      adv6_title: "Синергия двух стран",
+      adv6_p:
+        "Эквадор и Боливия дополняют друг друга по терруарам, культурам и логистике, создавая устойчивую базу поставок.",
+
+      market_tag: "Global trends",
+      market_title: "Рынок андинских чаёв, кофе и суперфудов",
+      market_sub:
+        "Мировой рынок здоровых напитков и суперфудов растёт быстрее классической FMCG-категории. Андинские origin-продукты занимают в нём особое место.",
+      market_left_title: "Мировые тренды",
+      market_left1:
+        "Рост функциональных напитков и ready-to-drink решений.",
+      market_left2:
+        "Спрос на суперфуды и растительную кухню как часть повседневного рациона.",
+      market_left3:
+        "Интерес к traceable origin: потребитель хочет знать, откуда продукт.",
+      market_left4:
+        "Развитие онлайн-каналов, подписок и direct-to-consumer моделей.",
+      market_right_title: "Наша ниша",
+      market_right_p1:
+        "Ecuador & Bolivia Coffee & Tea Co. фокусируется на андинском origin, функциональных напитках и Quinua Real как ключевом суперфуде региона.",
+      market_right_p2:
+        "Партнёрство с локальными инвесторами позволяет адаптировать портфель под конкретный рынок — от HoReCa и specialty-кофе до wellness-ритейла и e-commerce.",
+      market_chart_note:
+        "Схематичный рост нишевых категорий: superfoods, functional beverages, origin-coffee.",
+
+      inv_tag: "Ayni Brews",
+      inv_title: "Партнёрство в духе Анд",
+      inv_intro:
+        "В культуре Анд ayni — это взаимный обмен и совместное создание ценности. Мы переносим этот принцип в формат работы с инвесторами и дистрибьюторами.",
+      inv_col1_title: "Форматы участия",
+      inv_col1_p:
+        "Инвестиции в развитие брендов на вашем рынке, совместные предприятия, эксклюзивная дистрибуция или участие в экспортном холдинге.",
+      inv_col2_title: "На что идут инвестиции",
+      inv_col2_p:
+        "Развитие портфеля, сертификация и логистика, маркетинг и бренд-построение, расширение производственных мощностей и устойчивых коопераций с фермерами.",
+      inv_col3_title: "Что получает инвестор",
+      inv_col3_p:
+        "Долю в растущем андинском портфеле, доступ к origin-продуктам и возможность выстраивать уникальное позиционирование на своём рынке.",
+
+      story_tag: "From the Andes’ Heart",
+      story_title: "История бренда",
+      story_p1:
+        "Проект родился из личных маршрутов по Эквадору и Боливии, встреч с фермерскими семьями и дегустаций, которые невозможно забыть. Мы увидели, как много в Андах качественных продуктов и как мало из них доходит до полок за пределами региона.",
+      story_p2:
+        "Dos Tierras, Dos Almas, Una Pasión — две страны и две команды, которые объединились, чтобы создать устойчивую экспортную платформу напитков и суперфудов. Мы бережно относимся к происхождению, но говорим на языке современного брендинга и digital-каналов.",
+      story_p3:
+        "Наша цель — сделать так, чтобы андинский чай, кофе и Quinua Real стали естественной частью повседневной жизни людей по всему миру.",
+
+      team_tag: "People behind the project",
+      team_title: "Команда Ecuador & Bolivia Coffee & Tea Co.",
+      team_roman_role: "Сооснователь и партнёр проекта",
+      team_roman_name: "Чукавин Роман Александрович",
+      team_roman_desc:
+        "Отвечает за Эквадор, развитие партнёрств с фермерами и локальными производителями, работу на месте и построение экспортных цепочек поставок.",
+      team_valeriy_role: "Сооснователь и партнёр проекта",
+      team_valeriy_name: "Телегин Валерий Александрович",
+      team_valeriy_desc:
+        "Курирует стратегию, продуктовый портфель, коммуникацию с инвесторами и дистрибьюторами, digital-поддержку и развитие бренда на международных рынках.",
+
+      contacts_tag: "Contacts",
+      contacts_title: "Контакты",
+      contacts_p1:
+        "Если вы хотите обсудить партнёрство, запросить презентацию проекта или задать дополнительные вопросы, вы можете напрямую связаться с командой Ecuador & Bolivia Coffee & Tea Co. в Telegram.",
+      contacts_p2:
+        "Формат диалога: кратко расскажите, кто вы, из какой страны и какой формат сотрудничества рассматриваете (инвестиции, дистрибуция, private label и т.д.).",
+      contacts_card_title: "Связаться в Telegram",
+      contacts_btn: "Связаться с нами",
+      contacts_telegram_label: "Официальный контакт:",
+      contacts_meta_title: "Контактные данные проекта:",
+      contacts_tg_label: "Telegram:",
+      contacts_phone_label: "Телефон:",
+
+      footer_left:
+        "Ecuador & Bolivia Coffee & Tea Co. — Andean Brews From the Andes’ Heart.",
+      footer_top: "В начало страницы"
+    },
+
+    en: {
+      brand_name: "Ecuador & Bolivia Coffee & Tea Co.",
+      brand_sub: "From the Andes’ Heart",
+
+      nav_about: "About",
+      nav_portfolio: "Portfolio",
+      nav_advantages: "Advantages",
+      nav_market: "Market",
+      nav_investment: "Investment",
+      nav_story: "Story",
+      nav_team: "Team",
+      nav_contacts: "Contacts",
+
+      hero_badge: "Investment project in Andean beverages",
+      hero_title: "Investing in tea, coffee and superfoods from the Andes’ heart",
+      hero_subtitle:
+        "Ecuador & Bolivia Coffee & Tea Co. unites producers from Ecuador and Bolivia into a single export platform for Andean teas, coffee and Quinua Real.",
+      hero_slogan:
+        "Andean Sun Blend — a sunny fusion of Andean flavours and ideas.",
+      hero_b1:
+        "Wide portfolio: tea, coffee and superfoods within a single wellness concept.",
+      hero_b2:
+        "High–altitude terroir of the Andes and long–term relations with local farmers.",
+      hero_b3:
+        "Readiness for international markets and partnership format based on Ayni.",
+      hero_btn_about: "About the company",
+      hero_note:
+        "From the Andes’ Heart to your market — we are focused on long–term cooperation with investors and distributors.",
+      hero_pack_label: "Andean Brews · high altitude roast",
+
+      about_tag: "Dos Tierras, Una Pasión",
+      about_title: "Two lands, one passion for beverages",
+      about_p1:
+        "Ecuador & Bolivia Coffee & Tea Co. is a platform that connects producers from Ecuador and Bolivia with investors and partners worldwide. Our regions are the Andes, the Amazon and the Altiplano — where beverages are born from altitude, sun and rich soils.",
+      about_p2:
+        "We develop a portfolio of Andean teas, coffee and Quinua Real superfoods — from classic lines to functional and CBD–based products, keeping origin while adding modern packaging and service.",
+      about_p3:
+        "Dos Almas, Una Pasión — two souls with one aspiration: to create beverages that reflect the character of the Andes and the value of sustainable cooperation.",
+
+      portfolio_tag: "Andean Sun Blend",
+      portfolio_title: "Product portfolio",
+      portfolio_tab_tea: "Tea & functional drinks",
+      portfolio_tab_coffee: "Coffee",
+      portfolio_tab_quinoa: "Quinua Real",
+
+      tea_tag1: "Cumbre del Sabor",
+      tea_title1: "The peak of Andean teas",
+      tea_p1:
+        "A line of classic black and green teas with Andean terroir, blended for HoReCa and retail.",
+      tea_tag2: "SANGAY & Guayusa Tea Code",
+      tea_title2: "Forest energy & functional drinks",
+      tea_p2:
+        "Herbal blends SANGAY with Andean herbs, guayusa Guayusa Tea Code and other functional drinks for daytime energy and evening recovery.",
+      tea_tag3: "Paccha CBD & Altura Dorada",
+      tea_title3: "Wellness and premium heights",
+      tea_p3:
+        "CBD–based lines and Altura Dorada blends for SPA, hotels and premium tea menus.",
+
+      coffee_tag: "Andean Brews",
+      coffee_title: "Coffee from Ecuador and Bolivia",
+      coffee_p1:
+        "High–altitude coffee grown at 1,400–2,000 m a.s.l., processed on family farms and roasted for the needs of each local market partner — from espresso to filter.",
+      coffee_p2:
+        "We build a full chain from farm to cup, preserving lot origin and transparency of cooperation.",
+      coffee_steps_title: "From farm to cup",
+      coffee_step1:
+        "Step 1 · Drying. Classic and experimental processing: washed, honey, natural.",
+      coffee_step2:
+        "Step 2 · Green coffee. Selection, grading and preparation of export lots.",
+      coffee_step3:
+        "Step 3 · Roasted coffee. Creating signature profiles for HoReCa and specialty segments.",
+      coffee_pack_tag: "Packaging",
+      coffee_pack_p1:
+        "1 kg bags for HoReCa, golden foil sacks for roasters and stand–up pouches with valve for retail.",
+      coffee_pack_tag2: "Formats",
+      coffee_pack_p2:
+        "Private label lines, co–branding with local roasters and own brands under Andean Brews.",
+
+      quinoa_tag: "Quinua Real",
+      quinoa_title: "Superfood from the Altiplano",
+      quinoa_chip1: "Finished products",
+      quinoa_chip2: "Ingredients",
+      quinoa_chip3: "Color lines",
+      quinoa_p1:
+        "Noodles, pasta, desserts and ready mixes based on royal quinoa for retail and HoReCa.",
+      quinoa_p2:
+        "Grain, flakes, flour and puffed formats for food manufacturers and functional snacks.",
+      quinoa_p3:
+        "Black, red, white and tricolor Quinua Real with traceable origin and reliable logistics.",
+
+      processing_tag: "From cherry to green bean",
+      processing_title: "From cherry to green bean: how we process coffee",
+      processing_intro:
+        "At our processing station in Bolivia each lot travels the full way — from fresh cherry to sorted green beans in export–ready bags. These are real scenes from that journey.",
+      processing_step1: "Step 1 · Reception & preparation",
+      processing_step2: "Step 2 · Fresh cherry",
+      processing_step3: "Step 3 · Washing & fermentation",
+      processing_step4: "Step 4 · Drying",
+      processing_step5: "Step 5 · Manual control",
+      processing_step6: "Step 6 · Sorting",
+      processing_step7: "Step 7 · Bagging",
+      processing_step8: "Step 8 · Ready lots",
+      processing_step9: "Location",
+      processing_step10: "Export yard",
+      processing_cap1:
+        "The primary processing line receives cherries from farms and prepares them for further stages.",
+      processing_cap2:
+        "Ripe coffee cherries arrive in the receiving tank before depulping and separation.",
+      processing_cap3:
+        "In water channels mucilage is removed, defects float off and the flavour of the future coffee is stabilised.",
+      processing_cap4:
+        "Beans are dried on raised beds and patios under the sun until target moisture is reached.",
+      processing_cap5:
+        "The team regularly turns the coffee and hand–removes visible defects.",
+      processing_cap6:
+        "After drying, beans pass through vibrating tables and screens to be sorted by size and density.",
+      processing_cap7:
+        "Sorted coffee is packed into bags according to standard export formats.",
+      processing_cap8:
+        "Bags of green coffee are ready to move to warehouses and roasters.",
+      processing_cap9:
+        "The station is surrounded by Bolivian forest — this is where the journey of our coffee begins.",
+      processing_cap10:
+        "Final checks and preparation of lots before building containers and shipping worldwide.",
+
+      adv_tag: "Investment highlights",
+      adv_title: "Why this is a strong investment opportunity",
+      adv1_title: "Wide portfolio",
+      adv1_p:
+        "Tea, coffee and superfoods within one project: more entry points to the market and risk diversification.",
+      adv2_title: "Wellness & functionality",
+      adv2_p:
+        "Functional beverages, CBD products and superfoods match global health trends.",
+      adv3_title: "Andean origin",
+      adv3_p:
+        "High–altitude terroir, unique varieties and farm stories create extra brand value.",
+      adv4_title: "Export readiness",
+      adv4_p:
+        "Well–designed packaging formats, logistics chains and documentation for international deliveries.",
+      adv5_title: "Brands & design",
+      adv5_p:
+        "Concepts like Cumbre del Sabor, Andean Brews and Quinua Real allow growth across different channels.",
+      adv6_title: "Synergy of two countries",
+      adv6_p:
+        "Ecuador and Bolivia complement each other in terroirs, crops and logistics, forming a sustainable supply base.",
+
+      market_tag: "Global trends",
+      market_title: "Market for Andean teas, coffee and superfoods",
+      market_sub:
+        "The global market for healthy beverages and superfoods grows faster than classic FMCG categories. Andean origin products take a special place in this growth.",
+      market_left_title: "Global trends",
+      market_left1:
+        "Rise of functional beverages and ready–to–drink formats.",
+      market_left2:
+        "Demand for superfoods and plant–based cuisine as part of everyday diet.",
+      market_left3:
+        "Interest in traceable origin: consumers want to know where the product comes from.",
+      market_left4:
+        "Development of online channels, subscriptions and direct–to–consumer models.",
+      market_right_title: "Our niche",
+      market_right_p1:
+        "Ecuador & Bolivia Coffee & Tea Co. focuses on Andean origin, functional drinks and Quinua Real as a key regional superfood.",
+      market_right_p2:
+        "Partnership with local investors allows us to adapt the portfolio to each market — from HoReCa and specialty coffee to wellness retail and e-commerce.",
+      market_chart_note:
+        "Schematic growth of niche categories: superfoods, functional beverages, origin coffee.",
+
+      inv_tag: "Ayni Brews",
+      inv_title: "Partnership in the spirit of the Andes",
+      inv_intro:
+        "In Andean culture, ayni means mutual exchange and co-creation of value. We bring this principle into our work with investors and distributors.",
+      inv_col1_title: "Participation formats",
+      inv_col1_p:
+        "Investments into brand development in your market, joint ventures, exclusive distribution or participation in an export holding.",
+      inv_col2_title: "How funds are used",
+      inv_col2_p:
+        "Portfolio development, certification and logistics, marketing and branding, expansion of production and sustainable farmer cooperations.",
+      inv_col3_title: "What investors receive",
+      inv_col3_p:
+        "A share in a growing Andean portfolio, access to origin products and an opportunity to build unique positioning on their market.",
+
+      story_tag: "From the Andes’ Heart",
+      story_title: "Brand story",
+      story_p1:
+        "The project was born from personal routes across Ecuador and Bolivia, meetings with farming families and tastings one can hardly forget. We saw how many quality products the Andes have — and how few of them reach shelves outside the region.",
+      story_p2:
+        "Dos Tierras, Dos Almas, Una Pasión — two countries and two teams united to build a sustainable export platform for beverages and superfoods. We respect origin but speak the language of modern branding and digital channels.",
+      story_p3:
+        "Our goal is to make Andean tea, coffee and Quinua Real a natural part of everyday life for people around the world.",
+
+      team_tag: "People behind the project",
+      team_title: "Ecuador & Bolivia Coffee & Tea Co. team",
+      team_roman_role: "Co-founder & partner",
+      team_roman_name: "Roman Chukavin",
+      team_roman_desc:
+        "Responsible for Ecuador, development of partnerships with farmers and local producers, on-site operations and building export supply chains.",
+      team_valeriy_role: "Co-founder & partner",
+      team_valeriy_name: "Valeriy Telegin",
+      team_valeriy_desc:
+        "Oversees strategy, product portfolio, communication with investors and distributors, digital support and brand development on international markets.",
+
+      contacts_tag: "Contacts",
+      contacts_title: "Contacts",
+      contacts_p1:
+        "If you would like to discuss partnership, request a project presentation or ask additional questions, you can contact the Ecuador & Bolivia Coffee & Tea Co. team directly via Telegram.",
+      contacts_p2:
+        "When writing, please briefly introduce yourself, your country and which cooperation format you are interested in (investment, distribution, private label, etc.).",
+      contacts_card_title: "Contact via Telegram",
+      contacts_btn: "Contact us",
+      contacts_telegram_label: "Official contact:",
+      contacts_meta_title: "Project contacts:",
+      contacts_tg_label: "Telegram:",
+      contacts_phone_label: "Phone:",
+
+      footer_left:
+        "Ecuador & Bolivia Coffee & Tea Co. — Andean Brews From the Andes’ Heart.",
+      footer_top: "Back to top"
+    }
+  };
+
+  const langButtons = document.querySelectorAll('.lang-btn');
+
+  function applyLang(lang) {
+    const dict = translations[lang] || translations.ru;
+    document.documentElement.lang = lang === 'ru' ? 'ru' : 'en';
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (dict[key]) el.textContent = dict[key];
+    });
+    langButtons.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  }
+
+  function changeLang(lang) {
+    const page = document.querySelector('.page');
+    page.style.transition = 'opacity 0.25s ease';
+    page.style.opacity = '0.35';
+    setTimeout(() => {
+      applyLang(lang);
+      page.style.opacity = '1';
+    }, 120);
+  }
+
+  langButtons.forEach(btn => {
+    btn.addEventListener('click', () => changeLang(btn.dataset.lang));
+  });
+
+  applyLang('ru');
+</script>
+</body>
+</html>
